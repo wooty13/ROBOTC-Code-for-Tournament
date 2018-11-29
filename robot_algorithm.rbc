@@ -1,0 +1,39 @@
+task grab()
+{
+  setMotor(100, motor10);
+  wait(0.1, seconds);
+  stopMotor(motor10);
+}
+
+task go_forward(int power, int time)
+{
+  setMultipleMotors(power, motor6, motor7);
+  wait(time, seconds);
+  stopMultipleMotors(motor6, motor7);
+}
+
+task moveArm(int power, int time)
+{
+  setmotor(-100, motor11);
+  wait(0.25, seconds);
+  stopMotor(motor11);
+}
+
+task drop()
+{
+  setMotor(-100, motor10);
+  wait(0.1,seconds);
+  stopMotor(motor10);
+}
+
+task main()
+{
+  //Go forward
+  go_forward(100, 1);
+  //pick up hub
+  grab();
+  //raise arm
+  moveArm(-100, 0.25);
+  //drop hub
+  drop();
+}
